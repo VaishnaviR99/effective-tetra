@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mens page</title>
+    <style>
+        #parent{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap:10px;
+        }
+        #parent>div{
+            box-shadow: rgba(0, 0, 0,0.24) 0px 3px 8px;
+            
+        }
+        
+        
+        div>p:nth-child(2){
+            text-decoration: line-through;
+        }
+        p:last-child{
+            color: green;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="parent"></div>
+</body>
+</html>
+<script>
+    var mens_data=[{
+        image_url:
+        "https://m.media-amazon.com/images/I/51KJEbPkJcL._UY550_.jpg",
+        pattern:"Pause",
+        name: "MEN'S COTTON LONG SLEEVES SHRUG",
+        price: "359",
+        strikedoffprice: "1499",
+        discount:"-76%",
+    }, 
+    {
+        image_url:
+        "https://5.imimg.com/data5/OI/LU/MY-55616986/men-sweaters-500x500.jpg",
+        pattern:"JUBINATION",
+        name: "MEN'S WOOL SLEEVELESS SWATER PACK OF 1",
+        price: "799",
+        strikedoffprice: "1499",
+        discount:"-47%",
+      }]
+
+      displayproducts();
+      function displayproducts() {
+        mens_data.map(function(ele){
+        var div = document.createElement("div");
+
+        var image = document.createElement("img");
+        image.setAttribute("src",ele.image_url);
+        image.setAttribute("alt",ele.name);
+        
+        var pattern = document.createElement("h4");
+        pattern.textContent=ele.pattern;
+   
+        var name = document.createElement("h5");
+        name.textContent=ele.name;
+
+        var pricebox = document.createElement("div");
+        var price = document.createElement("p");
+        price.textContent="₹"+ele.price;
+
+        var MRP=document.createElement("p");
+        MRP.textContent="₹"+ele.strikedoffprice;
+
+        var discount = document.createElement("p");
+        discount.textContent=ele.discount;
+        pricebox.append(price,MRP,discount);
+
+        div.append(image,pattern,name,pricebox,);
+        document.getElementById("parent").append(div);
+        
+    });
+}
+</script>
